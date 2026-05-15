@@ -3,18 +3,18 @@ import TempInput from "./TemperatureInput.tsx";
 import TempResult from "./TemperatureResult.tsx";
 
 type ConverterState = {
-    celsius: number;
+    celsius: number | string;
 }
 
 const InitialState = {
-    celsius: 0,
+    celsius: "",
 }
 
 const Converter = () => {
 
     const [state, setState] = useState<ConverterState>(InitialState);
 
-    const handleValueChange = (newValue: number) => {
+    const handleValueChange = (newValue: number | string) => {
         setState({
             celsius: newValue
         });
@@ -22,12 +22,13 @@ const Converter = () => {
 
     return (
         <>
-            <div className="max-w-md mx-auto bg-white p-8 rounded-2xl shadow-lg border border-gray-100">
-                <h1 className="text-center text-xl font-bold mb-3">Temperature Converter</h1>
+            <div className="max-w-md mx-auto bg-white backdrop-blur-sm p-10 rounded-3xl shadow-2xl border border-white">
+                <h1 className="text-center text-3xl font-extrabold text-slate-800 mb-8 tracking-tight">
+                    Temperature Converter</h1>
                 <TempInput
                     value={state.celsius}
                     onValueChange={handleValueChange}
-                    />
+                />
                 <TempResult
                     celsius={state.celsius}
                     />
